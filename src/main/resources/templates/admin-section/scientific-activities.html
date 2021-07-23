@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Atividades Cientificas')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+        <div class="container pb-6">
+            <section class="section is-normal pb-6 px-1" th:object="${researcherInfo}">
+                <div>
+                    <div class="has-text-centered-mobile">
+                        <div class="level-left">
+                            <a th:href="@{'/admin/user/' + *{orcid}}">
+                                <div class="level-item is-size-2" th:text="*{name}"></div>
+                            </a>
+
+                            <div class="level-item tag is-info is-small" th:if="*{isAdmin}"></div>
+                        </div>
+                        <div class="px-5 has-text-grey">
+                            <div class="is-size-5" th:text="*{researcherCategory}"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="title is-4 has-text-primary">Formação Avançada</div>
+            <div class="box is-size-5 has-text-grey">
+                <div th:if="${#arrays.length(advancedEducations)} == 0">
+                    <div class="notification is-warning mx-3">
+                        Sem Formações Avançadas!
+                    </div>
+                </div>
+                <div th:each="advancedEdu,advancedEduStat : ${advancedEducations}">
+                    <div class="level">
+                        <a th:href="@{'/admin/scientific-activity/advanced-education/' + *{advancedEdu.id}}">
+                            <div class="level-left" th:text="*{advancedEdu.title}"></div>
+                        </a>
+                        <div class="level-right">
+                            <p class="level-item" th:text="*{#dates.format(advancedEdu.date, 'dd/MM/yyyy')}"></p>
+                            <!--<p class="level-item">|</p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/user/'}">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/advancedEducation/delete/' + *{advancedEdu.id}}">
+                                    <span class="fas fa-times-circle" aria-hidden="true"></span>
+                                </a>
+                            </p>-->
+                        </div>
+                    </div>
+                    <div class="divider is-right" th:if="!*{advancedEduStat.last}"></div>
+                </div>
+            </div>
+            <div class="title is-4 has-text-primary">Iniciação Científica de Jovens Estudantes</div>
+            <div class="box is-size-5 has-text-grey">
+                <div th:if="${#arrays.length(scientificInitOfYoungStudents)} == 0">
+                    <div class="notification is-warning mx-3">
+                        Sem Iniciações Científicas de Jovens Estudantes!
+                    </div>
+                </div>
+                <div th:each="scientificInit,scientificInitStat : ${scientificInitOfYoungStudents}">
+                    <div class="level">
+                        <a th:href="@{'/admin/scientific-activity/scientific-initiation/' + *{scientificInit.id}}">
+                            <div class="level-left" th:text="*{scientificInit.title}"></div>
+                        </a>
+                        <div class="level-right">
+                            <p class="level-item" th:text="*{#dates.format(scientificInit.date, 'dd/MM/yyyy')}"></p>
+                            <!--<p class="level-item">|</p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/user/'}">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/scientificInit/delete/' + *{scientificInit.id}}">
+                                    <span class="fas fa-times-circle" aria-hidden="true"></span>
+                                </a>
+                            </p>-->
+                        </div>
+                    </div>
+                    <div class="divider is-right" th:if="!*{scientificInitStat.last}"></div>
+                </div>
+            </div>
+            <div class="title is-4 has-text-primary">Produção Científica</div>
+            <div class="box is-size-5 has-text-grey">
+                <div th:if="${#arrays.length(publications)} == 0">
+                    <div class="notification is-warning mx-3">
+                        Sem Produções Científicas!
+                    </div>
+                </div>
+                <div th:each="publication,publicationStat : ${publications}">
+                    <div class="level">
+                        <a th:href="@{'/admin/scientific-activity/publication/' + *{publication.id}}">
+                            <div class="level-left" th:text="*{publication.title}"></div>
+                        </a>
+                        <div class="level-right">
+                            <p class="level-item" th:text="*{#dates.format(publication.publicationDate, 'dd/MM/yyyy')}"></p>
+                            <!--<p class="level-item">|</p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/user/'}">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/publication/delete/' + *{publication.id}}">
+                                    <span class="fas fa-times-circle" aria-hidden="true"></span>
+                                </a>
+                            </p>-->
+                        </div>
+                    </div>
+                    <div class="divider is-right" th:if="!*{publicationStat.last}"></div>
+                </div>
+            </div>
+            <div class="title is-4 has-text-primary">Projetos</div>
+            <div class="box is-size-5 has-text-grey">
+                <div th:if="${#arrays.length(projects)} == 0">
+                    <div class="notification is-warning mx-3">
+                        Sem Projetos!
+                    </div>
+                </div>
+                <div th:each="project,projectStat : ${projects}">
+                    <div class="level">
+                        <a th:href="@{'/admin/scientific-activity/project/' + *{project.id}}">
+                            <div class="level-left" th:text="*{project.title}"></div>
+                        </a>
+                        <div class="level-right">
+                            <p class="level-item" th:text="*{#dates.format(project.initialDate, 'dd/MM/yyyy')}"></p>
+                            <p class="level-item" th:text="*{#dates.format(project.finalDate, 'dd/MM/yyyy')}"></p>
+                            <!--<p class="level-item">|</p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/user/'}">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/project/delete/' + *{project.id}}">
+                                    <span class="fas fa-times-circle" aria-hidden="true"></span>
+                                </a>
+                            </p>-->
+                        </div>
+                    </div>
+                    <div class="divider is-right" th:if="!*{projectStat.last}"></div>
+                </div>
+            </div>
+            <div class="title is-4 has-text-primary">Disseminação</div>
+            <div class="box is-size-5 has-text-grey">
+                <div th:if="${#arrays.length(disseminations)} == 0">
+                    <div class="notification is-warning mx-3">
+                        Sem Disseminações!
+                    </div>
+                </div>
+                <div th:each="dissemination,disseminationStat : ${disseminations}">
+                    <div class="level">
+                        <a th:href="@{'/admin/scientific-activity/dissemination/' + *{dissemination.id}}">
+                            <div class="level-left " th:text="*{dissemination.title}"></div>
+                        </a>
+                        <div class="level-right">
+                            <p class="level-item" th:text="*{#dates.format(dissemination.date, 'dd/MM/yyyy')}"></p>
+                           <!-- <p class="level-item">|</p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/user/'}">
+                                    <span class="fas fa-edit" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                            <p class="level-item">
+                                <a th:href="@{'/admin/dissemination/delete/' + *{dissemination.id}}">
+                                    <span class="fas fa-times-circle" aria-hidden="true"></span>
+                                </a>
+                            </p>-->
+                        </div>
+                    </div>
+                    <div class="divider is-right" th:if="!*{disseminationStat.last}"></div>
+                </div>
+            </div>
+        </div>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

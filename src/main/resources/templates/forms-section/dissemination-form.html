@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Formulário de Disseminação')">
+</head>
+<script src="/js/bulma-calendar.js"></script>
+<script src="/js/myscripts.js"></script>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero py-6">
+  <div class="hero-body">
+    <form class="container"
+          th:object="${disseminationForm}"
+          method="post"
+          th:action="@{'/admin/' + ${orcid} + '/dissemination-form'}">
+      <div class="title">Disseminação</div>
+      <div class="field">
+        <div class="columns">
+          <div class="column">
+            <label class="label" for="title">Categoria</label>
+            <div class="control has-icons-left">
+              <div class="select ">
+                <select class="select-width-100" id="profCategory" th:field="*{disseminationCategory}">
+                  <option th:value="ORGANISING_COMMITTEE_MEMBER" th:text="'Membro da comissão organizadora de atividades de disseminação científica'"></option>
+                  <option th:value="SCIENTIFIC_COMMITTEE_MEMBER" th:text="'Membro da comissão científica de atividades de disseminação científica'"></option>
+                  <option th:value="KNOWLEDGE_AND_TECH_TRANSFER" th:text="'Transferência de Conhecimento e Tecnologia'"></option>
+                  <option th:value="PROMOTION_OF_CULTURE" th:text="'Promoção de Cultura Científica e Tecnológica'"></option>
+                  <option th:value="ACTIONS_TO_SOCIETY" th:text="'Ações de Especial Relevância para a Sociedade'"></option>
+                  <option th:value="OTHER_DISSEMINATION" th:text="'Outra Disseminação'"></option>
+                </select>
+              </div>
+              <p class="help is-danger" th:if="${#fields.hasErrors('disseminationCategory')}" th:errors="*{disseminationCategory}"></p>
+              <span class="icon is-small is-left"><i class="fas fa-book-open"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="columns">
+          <div class="column">
+            <label class="label" for="title">Título</label>
+            <div class="control has-icons-left">
+              <input class="input"
+                     id="title"
+                     type="text"
+                     placeholder="Título"
+                     th:field="*{title}">
+              <p class="help is-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</p>
+              <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+            </div>
+          </div>
+          <div class="column">
+            <label class="label" for="date">Data</label>
+            <div class="control has-icons-left">
+              <input class="input"
+                     id="date"
+                     type="date"
+                     placeholder="Data"
+                     th:field="*{date}">
+              <p class="help is-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Error</p>
+              <span class="icon is-small is-left"><i class="fas fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="columns">
+          <div class="column">
+            <label class="label" for="description">Descrição</label>
+            <div class="control">
+              <textarea class="textarea"
+                     id="description"
+                     type="text"
+                     placeholder="Descrição"
+                        th:field="*{description}"></textarea>
+              <p class="help is-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container has-text-centered pt-6" >
+        <button class="button is-medium is-primary" type="submit" value="Gravar">Criar Disseminação</button>
+      </div>
+    </form>
+  </div>
+</section>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

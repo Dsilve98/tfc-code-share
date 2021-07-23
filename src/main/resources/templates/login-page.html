@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Página de Login')">
+</head>
+<body>
+<section class="hero is-fullheight has-background">
+    <img alt="Lisboa background" class="hero-background is-transparent" src="/images/lisboa-background.jpg"/>
+    <div class="hero-body">
+        <div class="container is-landing-page">
+            <div class="box">
+                <div class="columns is-centered is-mobile pb-5 pt-4">
+                    <div class="column is-narrow is-narrow-mobile">
+                        <figure class="image is-192x192">
+                            <img src="/images/logo-completo.png" alt="Logotipo ceiED">
+                        </figure>
+                    </div>
+                </div>
+                <div class="field pb-1 px-6">
+                    <p class="control">
+                        <a class="button is-success is-medium is-fullwidth is-outlined" th:href="@{/default}">
+                            <span class="icon pr-4"> <i class="fab fa-orcid fa-lg"></i></span><span>Sign in with ORCID</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

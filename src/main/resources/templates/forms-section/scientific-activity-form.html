@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Formulário de Atividade Ciêntifica')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero py-6">
+    <div class="hero-body">
+        <form class="container"
+              th:object="${ResearcherForm}"
+              method="post"
+              th:action="@{/admin/personal-information-form}">
+            <div class="field">
+                <div class="columns">
+                    <div class="column">
+                        <label class="label" for="activityType">Tipo de Atividade</label>
+                        <div class="control is-expanded">
+                            <div class="select select-width-100">
+                                <select class="select-width-100" id="activityType" th:field="*{professionalCategory}">
+                                    <option th:value="'Investigador ou Professor Auxiliar'" th:text="'Investigador ou Professor Auxiliar'"></option>
+                                    <option th:value="'Investigador ou Professor Associado'" th:text="'Investigador ou Professor Associado'"></option>
+                                    <option th:value="'Professor Catedrático'" th:text="'Professor Catedrático'"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+
+                    </div>
+                    <div class="column">
+
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+
+                    </div>
+                    <div class="column">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

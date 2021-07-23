@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Formulário de Investigador')">
+</head>
+<script src="/js/myscripts.js"></script>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero py-6">
+    <div class="hero-body">
+        <form class="container"
+              th:object="${addResearcherForm}"
+              method="post"
+              th:action="@{/admin/add-researcher-form}">
+            <div class="field">
+                <div class="columns is-centered">
+                    <div class="column">
+                        <label class="label" for="name">Nome</label>
+                        <div class="control has-icons-left">
+                            <input class="input"
+                                   id="name"
+                                   type="text"
+                                   placeholder="Nome"
+                                   th:field="*{name}">
+                            <p class="help is-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</p>
+                            <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <label class="label" for="orcid">Orcid ID</label>
+                        <div class="control is-expanded has-icons-left">
+                            <input class="input"
+                                   id="orcid"
+                                   type="text"
+                                   placeholder="XXXX-XXXX-XXXX-XXXX"
+                                   th:field="*{orcid}">
+                            <p class="help is-danger" th:if="${#fields.hasErrors('orcid')}" th:errors="*{orcid}">Error</p>
+                            <span class="icon is-small is-left"><i class="fas fa-key"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container has-text-centered pt-6" >
+                <button class="button is-medium is-primary" type="submit" value="Gravar">Adicionar Investigador</button>
+            </div>
+        </form>
+    </div>
+</section>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

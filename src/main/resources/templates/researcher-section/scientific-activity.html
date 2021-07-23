@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="layout/layout :: head (pageTitle='Atividade Científica')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero py-6">
+    <div class="hero-body">
+        <div class="container">
+            <div th:if="${advancedEdu != null}" th:object="${advancedEdu}">
+                <div class="title">
+                    Formação Avançada
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong>Categoria</strong>
+                        <div th:switch="*{otherCategory}">
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).AGGREGATION_EXAMS_COMPLETION}">Realização de Provas de Agregação</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).PHD_SUPERVISION}">Orientação de Doutoramento</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).POST_DOCTORATE_SUPERVISION}">Orientação de Pós-Doutoramento</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).POST_DOCTORAL_STUDIES}">Realização de Pós-Doutoramento</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).PARTICIPATION_IN_DOCTORAL_JURIES}">Participação em Júris de Doutoramento</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).OTHER_CATEGORY}">Outra Formação Avançada</p>
+                            <p th:case="*">Unknown Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="title">Título</strong>
+                        <div th:text="*{title}"></div>
+                    </div>
+                    <div class="column">
+                        <strong for="date">Data</strong>
+                        <div th:text="*{#dates.format(date, 'dd/MM/yyyy')}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="description">Descrição</strong>
+                        <div th:text="*{description}"></div>
+                    </div>
+                    <div class="column" th:if="${institutions != null}">
+                        <strong for="institution">Instituições</strong>
+                        <div th:each ="institution: ${institutions}">
+                            <div th:text="${institution.name}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${scientificInit != null}" th:object="${scientificInit}">
+                <div class="title">
+                    Iniciação de Jovens Estudantes
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong>Categoria</strong>
+                        <div th:switch="*{otherCategory}">
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).MASTERS_SUPERVISION}">Orientação de Mestrado</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.OtherCategory).INTERNSHIP_SUPERVISION}">Orientação de Estágio</p>
+                            <p th:case="*">Unknown Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="title">Título</strong>
+                        <div th:text="*{title}"></div>
+                    </div>
+                    <div class="column">
+                        <strong for="date">Data</strong>
+                        <div th:text="*{#dates.format(date, 'dd/MM/yyyy')}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="description">Descrição</strong>
+                        <div th:text="*{description}"></div>
+                    </div>
+                    <div class="column" th:if="${institutions != null}">
+                        <strong for="institution">Instituições</strong>
+                        <div th:each ="institution: ${institutions}">
+                            <div th:text="${institution.name}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${publication != null}" th:object="${publication}">
+                <div class="title">
+                    Publicação
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong>Categoria</strong>
+                        <div th:switch="*{publicationCategory}">
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).KNOWLEDGE_CONTRIBUTION}">Contribuição para o Avanço e Aplicação do Conhecimento</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).NATIONAL_MAGAZINE}">Artigo em Revista Científica Nacional</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).INTERNATIONAL_MAGAZINE}">Artigo em Revista Científica Internacional</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).BOOK_AUTHORSHIP}">Autoria e Coautoria de Livro</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).BOOK_CHAPTER}">Capítulo de Livro</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).BOOK_EDITING_AND_ORGANISATION}">Edição/organização de Livro</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).INTERNATIONAL_CONFERENCE}">Comunicação em Conferência Internacional</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).NATIONAL_CONFERENCE}">Comunicação em Conferência Nacional</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.PublicationCategory).OTHER_PUBLICATION}">Outra Publicação</p>
+                            <p th:case="*">Unknown Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="title">Título</strong>
+                        <div th:text="*{title}"></div>
+                    </div>
+                    <div class="column">
+                        <strong for="date">Data</strong>
+                        <div th:text="*{#dates.format(publicationDate, 'dd/MM/yyyy')}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="descriptor">Identificadores</strong>
+                        <div class ="show-white-space" th:text="*{descriptor}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" th:if="*{#strings.length(publisher) != 0}">
+                        <strong for="publisher">Editora</strong>
+                        <div th:text="*{publisher}"></div>
+                    </div>
+                    <div class="column" th:if="*{#strings.length(authors) != 0}">
+                        <strong for="indexation">Autores</strong>
+                        <div th:text="*{authors}"></div>
+                    </div>
+                    <div class="column" th:if="*{#strings.length(indexation) != 0}">
+                        <strong for="indexation">Indexação</strong>
+                        <div th:text="*{indexation}"></div>
+                    </div>
+                    <div class="column" th:if="*{#strings.length(conferenceName) != 0}">
+                        <strong for="conferenceName">Conferência</strong>
+                        <div th:text="*{conferenceName}"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div th:if="${project != null}" th:object="${project}">
+                <div class="title">
+                    Projecto
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong>Categoria</strong>
+                        <div th:switch="*{projectCategory}">
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.ProjectCategory).INTERNATIONAL_PROJECT}">Projeto Internacional</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.ProjectCategory).NATIONAL_PROJECT}">Projeto Nacional</p>
+                            <p th:case="*">Unknown Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="title">Título</strong>
+                        <div th:text="*{title}"></div>
+                    </div>
+                    <div class="column">
+                        <strong for="date">Data</strong>
+                        <br>
+                        <div th:if="*{finalDate != null}">
+                            <span th:text="*{#dates.format(initialDate, 'dd/MM/yyyy')}"></span>
+                            <span>-</span>
+                            <span th:text="*{#dates.format(finalDate, 'dd/MM/yyyy')}"></span>
+                        </div>
+                        <div th:if="*{finalDate == null}">
+                            <span th:text="*{#dates.format(initialDate, 'dd/MM/yyyy')}"></span>
+                            <span>- ???</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" th:if="*{description != 'null'}">
+                        <strong for="description">Descrição</strong>
+                        <div th:text="*{description}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" th:if="${institutions != null}">
+                        <strong for="institution">Instituições</strong>
+                        <div th:each ="institution: ${institutions}">
+                            <div th:text="${institution.name}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="*{abstract} ? not '' " class="columns">
+                    <div class="column">
+                        <strong for="description">Abstract</strong>
+                        <div th:text="*{abstract}"></div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${dissemination != null}" th:object="${dissemination}">
+                <div class="title">
+                    Disseminação
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong>Categoria</strong>
+                        <div th:switch="*{disseminationCategory}">
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).ORGANISING_COMMITTEE_MEMBER}">Membro da Comissão Organizadora de Atividades de Disseminação Científica</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).SCIENTIFIC_COMMITTEE_MEMBER}">Membro da Comissão Científica de Atividades de Disseminação Científica</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).KNOWLEDGE_AND_TECH_TRANSFER}">Transferência de Conhecimento e Tecnologia</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).PROMOTION_OF_CULTURE}">Promoção de Cultura Científica e Tecnológica</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).ACTIONS_TO_SOCIETY}">Ações de Especial Relevância para a Sociedade</p>
+                            <p th:case="${T(pt.ulusofona.tfc.trabalho.dao.scientificActivities.DisseminationCategory).OTHER_DISSEMINATION}">Outra Disseminação</p>
+                            <p th:case="*">Unknown Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="title">Título</strong>
+                        <div th:text="*{title}"></div>
+                    </div>
+                    <div class="column">
+                        <strong for="date">Data</strong>
+                        <div th:text="*{#dates.format(date, 'dd/MM/yyyy')}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong for="description">Descrição</strong>
+                        <div th:text="*{description}"></div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column" th:if="${institutions != null}">
+                        <strong for="institution">Instituições</strong>
+                        <div th:each ="institution: ${institutions}">
+                            <div th:text="${institution.name}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Dados Pessoais')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+
+<section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="container">
+            <div class="box" th:object="${researcher}">
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <figure class="image is-128x128">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                        </figure>
+                        <br>
+                    </div>
+                    <div class="column is-narrow-mobile">
+                        <div class="title">
+                            <span th:text="*{name}"></span>
+                            <span th:if="*{isAdmin}" class="tag is-info is-small">Administrador</span>
+                        </div>
+                        <div>
+                            <strong class="has-text-primary">Ano Doutoramento: </strong>
+                            <span th:text="*{phdYear}"></span>
+                        </div>
+                        <div>
+                            <strong class="has-text-primary" >Orcid ID: </strong>
+                            <span th:text="*{orcid}"></span>
+                        </div>
+                        <div>
+                            <strong class="has-text-primary">Ciência ID: </strong>
+                            <span th:text="*{cienciaId}"></span>
+                        </div>
+                        <div>
+                            <strong class="has-text-primary">Chave Associação FCT: </strong>
+                            <span th:text="*{associationKeyFct}"></span>
+                        </div>
+                    </div>
+                    <div class="column is-narrow">
+                        <p class="buttons">
+                            <a class="button is-primary is-outlined mt-4 mr-4" th:href="@{'/admin/user/edit/' + *{orcid}}">
+                                <span class="icon is-small"><i class="fas fa-edit"></i></span>
+                                <span>Editar Dados</span>
+                            </a>
+                        </p>
+                        <p class="buttons">
+                            <a class="button is-primary is-outlined mr-4" th:href="@{'/admin/scientific-activities/' + *{orcid}}">
+                                <span class="icon is-small"><i class="fas fa-list-alt"></i></span>
+                                <span>Atividades Científicas</span>
+                            </a>
+                        </p>
+                        <!--<p class="buttons">
+                            <a class="button is-primary is-outlined mr-4" th:href="@{'/admin/' + *{orcid} + '/dissemination-form/'}">
+                                <span class="icon is-small"><i class="fas fa-plus"></i></span>
+                                <span>Criar Disseminação</span>
+                            </a>
+                        </p>-->
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong class="has-text-primary">Email:</strong><br>
+                        <span th:text="*{email}"></span>
+                    </div>
+                    <div class="column">
+                        <strong class="has-text-primary">Utilizador FCT</strong><br>
+                        <span th:text="*{utilizador}"></span>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong class="has-text-primary">Origem</strong><br>
+                        <span th:text="*{origin}"></span>
+                    </div>
+                    <div class="column">
+                        <strong class="has-text-primary">Telefone</strong><br>
+                        <span th:text="*{phoneNumber}"></span>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong class="has-text-primary">Categoria de Investigador</strong><br>
+                        <span th:text="*{researcherCategory}"></span>
+                    </div>
+                    <div class="column">
+                        <strong class="has-text-primary">Site CeiED</strong><br>
+                        <span th:text="*{siteCeied}"></span>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <strong class="has-text-primary">Categoria Profissional</strong><br>
+                        <span th:text="*{professionalCategory}"></span>
+                    </div>
+                    <div class="column">
+                        <strong class="has-text-primary">Situação Profissional</strong><br>
+                        <span th:text="*{professionalStatus}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

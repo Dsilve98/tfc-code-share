@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+
+// Brand Colors
+$red: #cc4b4b;
+$green: #a6ce39;
+$light: #f1f1f1;
+$black: #4a4a4a;
+$white: #ffffff;
+$dark-green: #1D6F42;
+
+// Update Bulma's global variables
+$family-sans-serif: "Montserrat", sans-serif;
+//$grey-dark: $brown;
+//$grey-light: $beige-light;
+$primary: $red;
+$link: $red;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+$info-dark: $green;
+$dark: $dark-green;
+
+// Update Bulma's component variables
+.table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Landing page----------
+.hero.has-background {
+  position: relative;
+  overflow: hidden;
+}
+.hero-background {
+  position: absolute;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+}
+.hero-background.is-transparent {
+  opacity: 1;
+}
+.image.is-192x192{
+  height: 192px;
+  width: 192px;
+}
+.image.is-256x256{
+  height: 256px;
+  width: 256px;
+}
+.container.is-landing-page{
+  max-width: 440px;
+}
+
+.select-width-100{
+  width:100%;
+}
+.show-white-space {
+  white-space: pre-wrap;
+}
+
+// Navbar component customize----------
+$navbar-height: 105px;
+$navbar-dropdown-arrow: $primary;
+$navbar-item-img-max-height: 105px;
+$navbar-item-hover-background-color: $light;
+$navbar-item-active-background-color: $primary;
+$navbar-dropdown-item-hover-background-color: $light;
+$navbar-dropdown-item-active-background-color: $primary;
+$button-border-color: $white;
+$button-hover-border-color: $primary;
+$navbar-padding-vertical: 0;
+
+//Notification -paading
+
+// Imports----------
+@import "../../../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../../../node_modules/bulma/sass/elements/_all.sass";
+//@import "../../../../../node_modules/bulma/sass/elements/button.sass";
+//@import "../../../../../node_modules/bulma/sass/elements/container.sass";
+//@import "../../../../../node_modules/bulma/sass/elements/title.sass";
+@import "../../../../../node_modules/bulma/sass/form/_all.sass";
+@import "../../../../../node_modules/bulma/sass/grid/_all.sass";
+@import "../../../../../node_modules/bulma/sass/components/_all.sass";
+//@import "../../../../../node_modules/bulma/sass/components/navbar.sass";
+//@import "../../../../../node_modules/bulma/sass/components/message.sass";
+@import "../../../../../node_modules/bulma/sass/helpers/_all.sass";
+@import "../../../../../node_modules/bulma/sass/layout/_all.sass";
+//@import "../../../../../node_modules/bulma/sass/layout/hero.sass";
+//@import "../../../../../node_modules/bulma/sass/layout/section.sass";
+
+// Bulma extensions
+@import "../../../../../node_modules/@creativebulma/bulma-divider/src/sass/index.sass";
+// Para funcionar "npm i bulma-xxxx"
+
+// bulma-switch
+//@import '~bulma-switch'; //<- nao funciona
+@import '../../../../../node_modules/bulma-switch/src/sass/index.sass';
+
+// bulma-calendar
+@import '../../../../../node_modules/bulma-calendar/src/sass/index.sass';

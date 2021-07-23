@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Formulário de Novo Investigador')">
+</head>
+<body>
+<section class="hero is-fullheight has-background">
+    <img alt="Lisboa background" class="hero-background is-transparent" src="/images/lisboa-background.jpg"/>
+    <div class="hero-body">
+        <div class="container is-landing-page">
+            <div class="box" th:object="${researcher}">
+                <p class="title is-3 has-text-centered has-text-primary">Para continuar, sincronize o seu Ciência Vitae!</p>
+                <p class="subtitle pt-3 is-5 has-text-centered">Clicando no botão abaixo</p>
+                <div class="field pb-1 px-6">
+                    <p class="control">
+                        <a class="button is-medium is-primary is-fullwidth is-outlined" th:href="@{'/sync-cv?id=' + ${researcher.cienciaId}}">Sincronizar CV</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

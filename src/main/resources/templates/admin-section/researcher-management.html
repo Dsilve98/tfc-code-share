@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Gerir Investigadores')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container is-fluid">
+            <div class="notification is-success has-text-centered" th:if="${message}" th:text="${message}">
+                Message...
+            </div>
+            <div class="container mb-5">
+                <a class="button is-primary" th:href="@{/admin/add-researcher-form}">
+                    <span class="icon is-large"><i class="fas fa-user-plus"></i></span>
+                    <span>Novo Investigador</span>
+                </a>
+            </div>
+            <table class="table" th:if="${!researchers.isEmpty()}">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CIÊNCIA ID</th>
+                    <th>Email</th>
+                    <th>Categoria de Investigador</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="researcher : ${researchers}">
+                    <td th:text="*{researcher.name}">
+                        <a th:href="@{'/admin/user/' + ${researcher.orcid}}">
+                            <span class="fas fa-eye" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td th:text="*{researcher.cienciaId}"></td>
+                    <td th:text="*{researcher.email}"></td>
+                    <td th:text="*{researcher.researcherCategory}"></td>
+                    <td>
+                        <a th:href="@{'/admin/user/' + ${researcher.orcid}}">
+                            <span class="fas fa-user" aria-hidden="true"></span>
+                        </a>
+                        &emsp;
+                        <a th:href="@{'/admin/scientific-activities/' + ${researcher.orcid}}">
+                            <span class="fas fa-list-alt" aria-hidden="true"></span>
+                        </a>
+                        &emsp;
+                        <a data-toggle="modal" th:attr="data-target=${'#myModal' + researcher.orcid}">
+                            <span class="fas fa-times-circle" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<div th:each="researcher : ${researchers}" class="modal" th:id="${'myModal' + researcher.orcid}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <strong class="modal-card-title">Atenção! - Aviso Importante!</strong>
+            <button class="delete" aria-label="close" data-bulma-modal="close"></button>
+        </header>
+        <section class="modal-card-body ">
+            <div class="content">
+                <h5 class="block" th:text="'O Investigador ' + ${researcher.name} + ' vai ser apagado.'"></h5>
+                <p>Os seus Dados Pessoais e todas as Atividades Científicas associadas a este investigador vão ser também eliminadas.</p>
+                <p>Tem a certeza que quer continuar?</p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-danger" th:href="@{'/admin/user/delete/' + ${researcher.orcid}}">
+                Eliminar o investigador
+            </button>
+            <button class="button" data-bulma-modal="close">Cancelar</button>
+        </footer>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+</div>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head (pageTitle)">
+    <title th:text="${pageTitle}">Layout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-with, initial-scale=1"/>
+    <script type="module" src="/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/7b2987c773.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <script src="/js/mobileMenuActivation.js"></script>
+</head>
+<body>
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" th:fragment="header">
+    <div class="navbar-brand">
+        <a class="navbar-item py-0 px-5"><img src="/images/logo.png" width="201" height="105" alt="logo"></a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu is-size-5 " id="navbarMenu">
+        <div class="navbar-start has-text-weight-medium">
+            <a class="navbar-item px-4" th:href="@{/home}">Página Inicial</a>
+            <div sec:authorize="hasRole('ADMIN')" class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Administração</a>
+                <div class="navbar-dropdown is-size-6">
+                    <a class="navbar-item py-3" th:href="@{/admin/searches}">Pesquisar Dados</a>
+                    <a class="navbar-item py-3" th:href="@{/admin/researcher-management}">Gerir Investigadores</a>
+                    <a class="navbar-item py-3" th:href="@{/admin/export-excel}">Exportar Dados Para Excel</a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Investigador</a>
+                <div class="navbar-dropdown is-size-6">
+                    <a class="navbar-item py-3" th:href="@{/researcher/personal-information}">Consultar Dados Pessoais</a>
+                    <a class="navbar-item py-3" th:href="@{/researcher/scientific-activities}">Consultar Atividades Científicas</a>
+                    <a class="navbar-item py-3" th:href="@{/researcher/accept-update-cv}">Atualizar Ciência Vitae</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end has-text-weight-medium">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    <span class="icon-text">
+                      <span class="icon">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <span th:text="${username}">Home</span>
+                    </span>
+                </a>
+                <div class="navbar-dropdown is-size-6">
+                    <a class="navbar-item py-3" th:href="@{/logout}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<footer class="footer" th:fragment="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>

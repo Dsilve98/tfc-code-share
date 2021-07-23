@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Página Inicial')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="columns">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <div class="box">
+                    <h1 class="title has-text-primary has-text-centered">Novos Investigadores do CeiED</h1>
+                    <div class="container">
+                        <table class="table" th:if="${!researchers.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Investigador</th>
+                                <th >Categoria</th>
+                                <th >Email</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="researcher, i : ${researchers}" th:unless="${i.index} > 5">
+                                <td th:text="*{researcher.name}"></td>
+                                <td th:text="*{researcher.professionalCategory}"></td>
+                                <td th:text="*{researcher.email}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <!--   <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title has-text-primary has-text-centered">Últimas Atividades Científicas</p>
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Investigador</th>
+                                    <th>Categoria da Atividade</th>
+                                    <th>Data</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>João Canela</td>
+                                    <td>Autoria e Coautoria de Livro</td>
+                                    <td>04-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Carolina Guerra</td>
+                                    <td>Artigo em Revista Científica Internacinal</td>
+                                    <td>04-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Catarina Guimarães</td>
+                                    <td>Capítulo de Livro</td>
+                                    <td>03-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Diogo Rodrigues</td>
+                                    <td>Artigo em Revista Científica Nacinal</td>
+                                    <td>03-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>João Canela</td>
+                                    <td>Orientação de Mestrado</td>
+                                    <td>03-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Beatriz Cruz</td>
+                                    <td>Autoria e Coautoria de Livro</td>
+                                    <td>01-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>João Canela</td>
+                                    <td>Projeto Nacional</td>
+                                    <td>01-2021</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Catarina Guimarães</td>
+                                    <td>Orientação de Doutoramento</td>
+                                    <td>12-2020</td>
+                                </tr>
+                                <tr>
+                                    <td>José Sequeira</td>
+                                    <td>Capítulo de Livro</td>
+                                    <td>12-2020</td>
+                                </tr>
+                                <tr>
+                                    <td>Beatriz Cruz</td>
+                                    <td>Artigo em Revista Científica Nacional</td>
+                                    <td>11-2020</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                    </article>
+                </div>-->
+            </div>
+
+    </div>
+</section>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

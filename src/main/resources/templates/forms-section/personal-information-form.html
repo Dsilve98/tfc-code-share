@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head (pageTitle='Formulário de Investigador')">
+</head>
+<script src="/js/myscripts.js"></script>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+<section class="hero py-6">
+    <div class="hero-body">
+        <form class="container"
+              th:object="${researcherForm}"
+              method="post"
+              th:action="@{/admin/user/edit}">
+            <div class="field">
+                <div class="columns">
+                    <div class="column">
+                        <label class="label" for="name">Nome</label>
+                        <div class="control has-icons-left">
+                            <input class="input"
+                                   id="name"
+                                   type="text"
+                                   placeholder="Nome"
+                                   th:field="*{name}">
+                        <p class="help is-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</p>
+                           <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="email">Email</label>
+                       <div class="control has-icons-left">
+                           <input class="input"
+                                  id="email"
+                                  type="email"
+                                  placeholder="Email"
+                                  th:field="*{email}">
+                       <p class="help is-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</p>
+                           <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field is-hidden">
+               <div class="columns">
+                   <div class="column">
+                           <label class="label" for="orcid">Orcid ID</label>
+                           <div class="control is-expanded has-icons-left">
+                               <input class="input"
+                                      id="orcid"
+                                      type="text"
+                                      placeholder="XXXX-XXXX-XXXX-XXXX"
+                                      th:field="*{orcid}">
+                           <p class="help is-danger" th:if="${#fields.hasErrors('orcid')}" th:errors="*{orcid}">Error</p>
+                               <span class="icon is-small is-left"><i class="fas fa-key"></i></span>
+                           </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="cienciaId">Ciência ID</label>
+                       <div class="control is-expanded has-icons-left">
+                           <input class="input"
+                                  id="cienciaId"
+                                  type="text"
+                                  placeholder="XXXX-XXXX-XXXX"
+                                  th:field="*{cienciaId}">
+                           <span class="icon is-small is-left"><i class="fas fa-key"></i></span>
+                       <p class="help is-danger" th:if="${#fields.hasErrors('cienciaId')}" th:errors="*{cienciaId}">Error</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field">
+               <div class="columns">
+                   <div class="column">
+                       <label class="label" for="assocKeyFct">Chave de Associação FCT</label>
+                       <div class="control is-expanded has-icons-left">
+                           <input class="input"
+                                  id="assocKeyFct"
+                                  type="text"
+                                  placeholder="Chave de Associação FCT"
+                                  th:field="*{associationKeyFct}">
+                           <!--<p class="help is-danger" th:if="${#fields.hasErrors('associationKeyFct')}" th:errors="*{associationKeyFct}">Error</p>-->
+                           <span class="icon is-small is-left"> <i class="fas fa-key"></i> </span>
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="utilizador">Utilizador FCT</label>
+                       <div class="control is-expanded has-icons-left">
+                           <input class="input"
+                                  id="utilizador"
+                                  type="text"
+                                  placeholder="Utilizador FCT"
+                                  th:field="*{utilizador}">
+                           <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field">
+               <div class="columns">
+                   <div class="column">
+                       <label class="label" for="phoneNumber">Telefone</label>
+                       <div class="control is-expanded has-icons-left">
+                           <input class="input"
+                                  id="phoneNumber"
+                                  type="text"
+                                  placeholder="Telefone"
+                                  th:field="*{phoneNumber}">
+                           <p class="help is-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Error</p>
+                           <span class="icon is-small is-left"><i class="fas fa-phone"></i></span>
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="origin">Origem</label>
+                       <div class="control is-expanded">
+                           <input class="input"
+                                  id="origin"
+                                  type="text"
+                                  placeholder="Origem"
+                                  th:field="*{origin}">
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field">
+               <div class="columns">
+                   <div class="column">
+                       <label class="label" for="siteCeied">Site CeiED</label>
+                       <div class="control is-expanded">
+                           <input class="input"
+                                  id="siteCeied"
+                                  type="text"
+                                  placeholder="Site CeiED"
+                                  th:field="*{siteCeied}">
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="researcherCategory">Categoria de Investigador</label>
+                       <div class="control is-expanded">
+                           <div class="select select-width-100">
+                               <select class="select select-width-100" id="researcherCategory" th:field="*{researcherCategory}">
+                                   <option th:value="'Integrado Doutorado'" th:text="'Integrado Doutorado'"></option>
+                                   <option th:value="'Integrado Não Doutorado'" th:text="'Integrado Não Doutorado'"></option>
+                                   <option th:value="'Colaborador'" th:text="'Colaborador'"></option>
+                                   <option th:value="'Pós-doutorando'" th:text="'Pós-doutorando'"></option>
+                                   <option th:value="'Convidado'" th:text="'Convidado'"></option>
+                               </select>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field">
+               <div class="columns">
+                   <div class="column">
+                       <label class="label" for="profStatus">Situação Profissional</label>
+                       <div class="control is-expanded">
+                           <input class="input"
+                                  id="profStatus"
+                                  type="text"
+                                  placeholder="Situação Profissional"
+                                  th:field="*{professionalStatus}">
+                           <p class="help is-danger" th:if="${#fields.hasErrors('professionalStatus')}" th:errors="*{professionalStatus}">Error</p>
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label" for="profCategory">Categoria Profissional</label>
+                       <div class="control is-expanded">
+                           <div class="select select-width-100">
+                               <select class="select-width-100" id="profCategory" th:field="*{professionalCategory}">
+                                   <option th:value="'Investigador ou Professor Auxiliar'" th:text="'Investigador ou Professor Auxiliar'"></option>
+                                   <option th:value="'Investigador ou Professor Associado'" th:text="'Investigador ou Professor Associado'"></option>
+                                   <option th:value="'Professor Catedrático'" th:text="'Professor Catedrático'"></option>
+                               </select>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="field">
+               <div class="columns">
+                   <div class="column">
+                       <label class="label" for="calendarioAno">Ano Doutoramento</label>
+                       <div class="control has-icons-left">
+                           <input class="input"
+                                  id="calendarioAno"
+                                  type="text"
+                                  placeholder="Ano"
+                                  th:field="*{phdYear}">
+                           <span class="icon is-left"><i class="fas fa-calendar"></i></span>
+                       </div>
+                   </div>
+                   <div class="column">
+                       <label class="label">Administrador</label>
+                       <input th:id="switchAdmin"
+                              type="checkbox"
+                              name="switchAdmin"
+
+                              th:field="*{isAdmin}"
+                              th:checked="*{isAdmin}">
+                       <label th:for="switchAdmin" class="label"></label>
+                       <!--class="switch is-primary is-rtl"-->
+                   </div>
+               </div>
+           </div>
+
+            <div class="container has-text-centered pt-6" >
+                <!--<button class="button is-medium is-primary" type="submit" value="Gravar" th:if="*{orcid == null || orcid == ''}">Criar Investigador</button>-->
+                <button class="button is-medium is-primary" type="submit" value="Gravar">Editar Investigador</button>
+                <!--<button class="button is-medium is-primary" type="submit" value="Gravar" th:if="*{orcid != null}">Editar Investigador</button>
+                <button class="button is-medium is-primary" type="submit" value="Gravar" th:if="*{orcid == null}">Criar Investigador</button>-->
+            </div>
+        </form>
+    </div>
+</section>
+<div th:replace="layout/layout :: footer"></div>
+</body>
+</html>

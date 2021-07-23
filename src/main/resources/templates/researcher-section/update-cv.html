@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="layout/layout :: head (pageTitle='Atualizar Ciência Vitae')">
+</head>
+<body class="has-navbar-fixed-top">
+<div th:replace="layout/layout :: header"></div>
+    <section class="hero is-fullheight-with-navbar pb-6">
+        <div class="hero-body">
+            <div class="container is-landing-page">
+                <div th:object="${researcher}">
+                    <p class="title is-3 has-text-centered has-text-primary">Quer atualizar o seu Ciência Vitae?</p>
+                    <p class="subtitle pt-3 is-5 has-text-centered">Clique no botão abaixo</p>
+                    <div class="field pb-1 px-6">
+                        <p class="control">
+                            <a class="button is-medium is-primary is-fullwidth is-outlined" th:href="@{'/sync-cv?id=' + ${researcher.cienciaId}}">Atualizar CV</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
